@@ -1,1 +1,6 @@
 writeup
+.spago
+output
+node_modules
+.purs-repl
+

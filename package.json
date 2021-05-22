@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/vuolen/urlnote/issues"
   },
-  "homepage": "https://github.com/vuolen/urlnote#readme"
+  "homepage": "https://github.com/vuolen/urlnote#readme",
+  "dependencies": {
+    "purescript": "^0.14.1",
+    "spago": "^0.20.3"
+  }
 }

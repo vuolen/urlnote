@@ -4,8 +4,9 @@
   "description": "A text sharing website that includes all its data in the URL.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npx spago install",
     "dev": "DEV=true node esbuild.js & npx spago build --watch",
-    "bundle": "node esbuild.js",
+    "build": "npx spago build && node esbuild.js",
     "test": "npx spago test"
   },
   "repository": {

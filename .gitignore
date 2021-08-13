@@ -3,4 +3,5 @@ writeup
 output
 node_modules
 .purs-repl
+dist/out.js
 

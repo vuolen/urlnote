@@ -1,10 +1,12 @@
 {
   "name": "urlnote",
   "version": "1.0.0",
-  "description": "A note sharing website that includes all its data in the URL.",
+  "description": "A text sharing website that includes all its data in the URL.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "DEV=true node esbuild.js & spago build --watch",
+    "bundle": "node esbuild.js",
+    "test": "spago test"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,9 @@
   },
   "homepage": "https://github.com/vuolen/urlnote#readme",
   "dependencies": {
+    "big-integer": "^1.6.48",
+    "esbuild": "^0.12.19",
+    "esbuild-plugin-purescript": "^1.1.1",
     "purescript": "^0.14.1",
     "spago": "^0.20.3"
   }

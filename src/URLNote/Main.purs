@@ -11,6 +11,7 @@ import Data.HashMap (lookup)
 import Data.BigInt (BigInt, fromInt, toNumber, rem, quot, pow)
 import Data.Int (floor)
 import Data.Maybe (Maybe(..), fromJust)
+import Data.Enum (toEnum)
 import Partial.Unsafe (unsafePartial)
 
 unsnoc :: String -> Maybe {init :: String, last :: Digit}
@@ -20,8 +21,8 @@ unsnoc string = case (Array.unsnoc <<< toCodePointArray) string of
       Nothing -> Nothing
 
 base83_alphabet = fromString "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345689-._:/?#[]@!$&'()*+,;=" :: Alphabet
-base256_alphabet = BaseConversion.fromCodePointArray (map (unsafePartial (codePointFromChar <<< fromJust <<< fromCharCode)) (range 0 255)) :: Alphabet
-base10FFFF_alphabet = BaseConversion.fromCodePointArray (map (unsafePartial (codePointFromChar <<< fromJust <<< fromCharCode)) (range 0 0x10FFFF)) :: Alphabet
+base256_alphabet = BaseConversion.fromCodePointArray (map (unsafePartial (fromJust <<< toEnum)) (range 0 255)) :: Alphabet
+base10FFFF_alphabet = BaseConversion.fromCodePointArray (map (unsafePartial (fromJust <<< toEnum)) (range 0 0x10FFFF)) :: Alphabet
 
 
 -- BigInt constants

@@ -1,17 +1,20 @@
 module URLNote.BaseConversion where
 
-import Prelude (class Eq, map, (<<<))
+import Prelude (class Eq, class Show, show, map, (<<<), (<>))
 import Data.Array ((!!), range, zip, length)
 import Data.HashMap (HashMap, fromArray, lookup)
 import Data.Maybe (Maybe)
 import Data.Hashable (class Hashable, hash)
-import Data.String.CodePoints (CodePoint, codePointFromChar, singleton, toCodePointArray)
+import Data.String.CodePoints (CodePoint, singleton, toCodePointArray)
 
 -- DIGIT
 
 newtype Digit = Digit CodePoint
 
 derive instance eqDigit :: Eq Digit
+
+instance showDigit :: Show Digit where
+      show (Digit cp) = "(Digit " <> (show cp) <> ")"
 
 instance hashableDigit :: Hashable Digit where
       hash (Digit cp) = (hash <<< singleton) cp

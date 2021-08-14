@@ -9,32 +9,19 @@ import Test.Spec.Assertions (shouldEqual, shouldNotEqual)
 import Test.Spec (describe, it)
 import Data.BigInt (fromInt, pow)
 
-import URLNote.Main (encode, decode, toBase83)
+import URLNote.Main (encode, decode, toBase83, fromBase83, toBase10FFFF, fromBase10FFFF)
 
 main :: Effect Unit
 main = launchAff_ $ runSpec [consoleReporter] do
   describe "program" do
     it "encodes and decodes \"hello\" to itself" do
       (decode <<< encode) "hello" `shouldEqual` "hello"
-  describe "toBase83" do
-    it "encodes 0 as an empty string" do
-      toBase83 (fromInt 0) `shouldEqual` ""
-    it "encodes 1 as b" do
-      toBase83 (fromInt 1) `shouldEqual` "b"
-    it "encodes 82 as =" do
-      toBase83 (fromInt 82) `shouldEqual` "="
-    it "encodes 83 as ba" do
-      toBase83 (fromInt 83) `shouldEqual` "ba"
-    it "encodes 84 as bb" do
-      toBase83 (fromInt 84) `shouldEqual` "bb"
-    it "encodes 165 as b=" do
-      toBase83 (fromInt 165) `shouldEqual` "b="
-    it "encodes 166 as ca" do
-      toBase83 (fromInt 166) `shouldEqual` "ca"
-    it "encodes 7058 as ca" do
-      toBase83 (fromInt 7058) `shouldEqual` "bcd"
-    it "doesnt encode a large number as 0" do
-      toBase83 (pow (fromInt 2147483647) (fromInt 100)) `shouldNotEqual` "a"
+  describe "base 83 conversion" do
+    it "encodes and decodes \"hello\" to itself" do
+      (toBase83 <<< fromBase83) "hello" `shouldEqual` "hello"
+  describe "base 10FFFF conversion" do
+    it "encodes and decodes \"hello\" to itself" do
+      (toBase10FFFF <<< fromBase10FFFF) "hello" `shouldEqual` "hello"
 
 {- import Effect (Effect)
 import Data.String.Utils (toCharArray)
